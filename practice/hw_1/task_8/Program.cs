@@ -6,13 +6,10 @@
 Console.WriteLine("Enter your number");
 int N = Convert.ToInt32(Console.ReadLine());
 
-int count = 1;
+int count = 2;
 
 while (count <= N)
 {
-    if (count % 2 == 0)
-    {
-        Console.Write(count + " ");
-    }
-    count++;
+    Console.Write(count + " ");
+    count += 2;
 }
