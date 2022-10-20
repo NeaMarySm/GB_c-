@@ -3,89 +3,165 @@ string[] commands = { "exit", "help", "set name", "show name", "set password", "
 string? password = null;
 string? name = null;
 int attempts = 3;
-
-while (true)
+bool cycle = true;
+while (cycle)
 {
     Console.WriteLine("Enter Command");
     string input = Console.ReadLine();
-    if (input == "exit")
+
+    switch (input)
     {
-        break;
-    }
-    else if (input == "help")
-    {
-        ShowCommands(commands);
-    }
-    else if (input == "set password")
-    {
-        if (password == null)
-        {
-            SetPassword();
-        }
-        else
-        {
-            Console.WriteLine("Password is already set.");
-        }
-    }
-    else if (input == "change password")
-    {
-        if (password == null)
-        {
-            SetPassword();
-        }
-        else
-        {
-            if (CheckPassword(attempts))
+        case "exit":
+            cycle = false;
+            break;
+        case "help":
+            ShowCommands(commands);
+            break;
+        case "set password":
+            if (password == null)
             {
                 SetPassword();
             }
             else
             {
-                Console.WriteLine("Wrong password. Try again later.");
+                Console.WriteLine("Password is already set.");
             }
-        }
-    }
-    else if (input == "show name")
-    {
-        if (password != null)
-        {
-
-            if (CheckPassword(attempts))
+            break;
+        case "change password":
+            if (password == null)
+            {
+                SetPassword();
+            }
+            else
+            {
+                if (CheckPassword(attempts))
+                {
+                    SetPassword();
+                }
+                else
+                {
+                    Console.WriteLine("Wrong password. Try again later.");
+                }
+            }
+            break;
+        case "show name":
+            if (password != null)
+            {
+                if (CheckPassword(attempts))
+                {
+                    ShowName();
+                }
+                else
+                {
+                    Console.WriteLine("Wrong password. Try again later.");
+                }
+            }
+            else
             {
                 ShowName();
             }
-            else
+            break;
+        case "set name":
+            if (password != null)
             {
-                Console.WriteLine("Wrong password. Try again later.");
+                if (CheckPassword(attempts))
+                {
+                    SetName();
+                }
+                else
+                {
+                    Console.WriteLine("Wrong password. Try again later.");
+                }
             }
-        }
-        else
-        {
-            ShowName();
-        }
-    }
-    else if (input == "set name")
-    {
-        if (password != null)
-        {
-
-            if (CheckPassword(attempts))
+            else
             {
                 SetName();
             }
-            else
-            {
-                Console.WriteLine("Wrong password. Try again later.");
-            }
-        }
-        else
-        {
-            SetName();
-        }
+            break;
+        default:
+            Console.WriteLine("Unknown command");
+            break;
     }
-    else Console.WriteLine("Unknown command");
 }
 Console.WriteLine("End");
+
+//     if (input == "exit")
+//     {
+//         break;
+//     }
+//     else if (input == "help")
+//     {
+//         ShowCommands(commands);
+//     }
+//     else if (input == "set password")
+//     {
+//         if (password == null)
+//         {
+//             SetPassword();
+//         }
+//         else
+//         {
+//             Console.WriteLine("Password is already set.");
+//         }
+//     }
+//     else if (input == "change password")
+//     {
+//         if (password == null)
+//         {
+//             SetPassword();
+//         }
+//         else
+//         {
+//             if (CheckPassword(attempts))
+//             {
+//                 SetPassword();
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Wrong password. Try again later.");
+//             }
+//         }
+//     }
+//     else if (input == "show name")
+//     {
+//         if (password != null)
+//         {
+
+//             if (CheckPassword(attempts))
+//             {
+//                 ShowName();
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Wrong password. Try again later.");
+//             }
+//         }
+//         else
+//         {
+//             ShowName();
+//         }
+//     }
+//     else if (input == "set name")
+//     {
+//         if (password != null)
+//         {
+
+//             if (CheckPassword(attempts))
+//             {
+//                 SetName();
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Wrong password. Try again later.");
+//             }
+//         }
+//         else
+//         {
+//             SetName();
+//         }
+//     }
+//     else Console.WriteLine("Unknown command");
+// }
 
 void ShowCommands(string[] commands)
 {
