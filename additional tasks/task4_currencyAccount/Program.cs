@@ -10,19 +10,17 @@ string userName = "sam";
 string password = "pass";
 bool authorized = false;
 int attempts = 3;
-bool cycle = true;
+bool inProcess = true;
 
 string[] allCommands = { "exit", "help", "rates", "login", "balance", "exchange", "deposit" };
 string[] unAuthCommands = { "exit", "help", "rates", "login" };
-
 
 double accountUsd = 0;
 double accountEur = 0;
 double accountRu = 0;
 double accountCny = 0;
 
-
-while (cycle)
+while (inProcess)
 {
     Console.WriteLine("Enter Command. To see available commands print 'help'");
     string input = Console.ReadLine();
@@ -33,7 +31,7 @@ while (cycle)
             ShowHelp(authorized, allCommands, unAuthCommands);
             break;
         case "exit":
-            cycle = false;
+            inProcess = false;
             break;
         case "login":
             LogIn();
@@ -75,7 +73,6 @@ while (cycle)
             Console.WriteLine("Unknown Command");
             break;
     }
-
 }
 
 // Methods
@@ -104,7 +101,6 @@ void LogIn()
         {
             authorized = true;
             Console.WriteLine("Authorization success");
-            return;
         }
         else
         {
@@ -118,7 +114,6 @@ void LogIn()
         }
     }
     else Console.WriteLine("No attempts left. Try again later");
-
 }
 
 void ShowRates()
@@ -131,13 +126,11 @@ void ShowRates()
 
 void ShowBalance()
 {
-
     Console.WriteLine("Your Balance:");
     Console.WriteLine($"USD: {Math.Round(accountUsd, 2)}$");
     Console.WriteLine($"EUR: {Math.Round(accountEur, 2)}€");
     Console.WriteLine($"RU: {Math.Round(accountRu, 2)}₽");
     Console.WriteLine($"CNY: {Math.Round(accountCny, 2)}¥");
-
 }
 
 void PrintCommands(string[] commands)
@@ -189,10 +182,8 @@ void Exchange()
         ChangeAccountBalance(initialCurrency, -value);
         Console.WriteLine("Exchange success");
         ShowBalance();
-
     }
     else Console.WriteLine("Insufficient funds to exchange");
-
 }
 
 void ShowCurrencies(string[] currencies)
@@ -271,13 +262,9 @@ string SetCurrency(string message)
         string input = (Console.ReadLine()).ToLower();
         if (IsAvailableString(input, currencies))
         {
-
             return input;
-        }
-        else
-        {
-            Console.WriteLine("Unavailable currency.");
-        }
+        }    
+            Console.WriteLine("Unavailable currency.");      
     }
 }
 
@@ -295,9 +282,7 @@ double SetValue(string message)
         {
             return input;
         }
-
     }
-
 }
 
 double GetAccountBalance(string currency)
