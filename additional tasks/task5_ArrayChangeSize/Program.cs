@@ -7,17 +7,17 @@
 
 */
 
-int[] array = { 1, 8, 14, 12, 9, 0 };
+int[] array = { 1, 8, 14, 12, 9, 0, 13, 88, 11, 5 };
 
-printArray(array);
+PrintArray(array);
 Console.WriteLine();
 AddToArray(ref array, 33);
 AddToArray(ref array, 2);
 AddToArray(ref array, 5);
-printArray(array);
+PrintArray(array);
 Console.WriteLine();
 RemoveFromArray(ref array, 3);
-printArray(array);
+PrintArray(array);
 
 void AddToArray(ref int[] arr, int value)
 {
@@ -47,10 +47,11 @@ void RemoveFromArray(ref int[] arr, int index)
     arr = newArray;
 }
 
-void printArray(int[] arr)
+void PrintArray(int[] arr)
 {
     foreach (int item in arr)
     {
         Console.Write(item + " ");
     }
 }
+
