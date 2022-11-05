@@ -3,20 +3,24 @@
 ...Написать 2 функции для работы с массивом: AddToArray И RemoveFromArray – первая добавляет к числовому массиву значение, тем самым увеличивая массив, 
 а вторая удаляет элемент под нужным индексом и уменьшает массив на 1.
 
-Нельзя использовать Resize и любые другие встроенные методы массивов
+Написать функцию Shuffle, которая перемешивает элементы массива в случайном порядке.
 
 */
 
 int[] array = { 1, 8, 14, 12, 9, 0, 13, 88, 11, 5 };
 
 PrintArray(array);
-Console.WriteLine();
+
+Console.WriteLine("Add:");
 AddToArray(ref array, 33);
-AddToArray(ref array, 2);
-AddToArray(ref array, 5);
 PrintArray(array);
-Console.WriteLine();
+
+Console.WriteLine("Remove:");
 RemoveFromArray(ref array, 3);
+PrintArray(array);
+
+Console.WriteLine("Shuffled array:");
+ArrayShuffle(ref array);
 PrintArray(array);
 
 void AddToArray(ref int[] arr, int value)
@@ -49,9 +53,23 @@ void RemoveFromArray(ref int[] arr, int index)
 
 void PrintArray(int[] arr)
 {
+    Console.WriteLine();
     foreach (int item in arr)
     {
         Console.Write(item + " ");
     }
+    Console.WriteLine();
 }
 
+void ArrayShuffle(ref int[] array)
+{
+    int length = array.Length;
+    int[] newArray = new int[length];
+    for (int i = 0; i < length; i++)
+    {
+        int index = new Random().Next(0, array.Length);
+        newArray[i] = array[index];
+        RemoveFromArray(ref array, index);
+    }
+    array = newArray;
+}
