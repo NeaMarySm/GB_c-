@@ -28,13 +28,14 @@ int[] GenerateRange(int min, int max)
 	}
 	return array;
 }
-
-int CountCoinsedenceInArray(int[] array, int[] range)
+// универсальный метод для подсчета совпадений в двух массивах
+// В случае с диапазоном лучше использовать if(arr[i]>=min && arr[1]<=max)
+int CountCoinsedenceInArray(int[] array, int[] secondArray)
 {
 	int result = 0;
 	for (int i = 0; i < array.Length; i++)
 	{
-		if (FindInArray(range, array[i]))
+		if (FindInArray(secondArray, array[i]))
 		{
 			result++;
 		}
