@@ -7,14 +7,14 @@ Console.WriteLine(count);
 int CountPositive(string str)
 {
 	int notPositive = 0;
-	int length = 0;
+	int length = 1;
 	for (int i = 0; i < str.Length; i++)
 	{
 		if (str[i] == ',')
 		{
 			length++;
 		}
-		if (str[i] == '-' || (str[i] == 0 && str[i + 1] == ','))
+		if (str[i] == '-' || (str[i] == '0' && str[i + 1] == ','))
 		{
 			notPositive++;
 		}
