@@ -1,7 +1,10 @@
 class CardDeck
 {
 	private int _deckSize;
-	public Card[] _cards;
+	private Card[] _cards;
+	public int Decksize => _deckSize;
+	public int CardsLeft => _cards.Length;
+	public Card[] Cards => _cards;
 
 	public CardDeck(int deckSize)
 	{
@@ -12,7 +15,8 @@ class CardDeck
 	{
 		_cards = new Card[_deckSize];
 		int cardsAdded = 0;
-		for (int i = _deckSize == 54 ? 0 : 5; i < _deckSize / 4; i++)
+
+		for (int i = _deckSize == 36 ? 6 : 1; i <= _deckSize / 4; i++)
 		{
 			_cards[cardsAdded++] = new Card(Suit.Hearts, (Rank)i);
 			_cards[cardsAdded++] = new Card(Suit.Diamonds, (Rank)i);
@@ -20,6 +24,7 @@ class CardDeck
 			_cards[cardsAdded++] = new Card(Suit.Spades, (Rank)i);
 		}
 	}
+
 	public void PrintDeck()
 	{
 		foreach (Card card in _cards)
@@ -27,6 +32,7 @@ class CardDeck
 			card.PrintCard();
 		}
 	}
+
 	public void RemoveFromDeck(Card cardToRemove)
 	{
 		Card[] tempCardsDeck = new Card[_cards.Length - 1];

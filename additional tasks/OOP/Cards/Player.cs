@@ -1,7 +1,7 @@
 class Player
 {
-	public string _name;
-	public Card[] _cardsInHand;
+	private string _name;
+	private Card[] _cardsInHand;
 	public CardDeck _deck;
 	public Player(string name, CardDeck deck)
 	{
@@ -12,13 +12,13 @@ class Player
 
 	public Card TakeRandomCard()
 	{
-		int maxIndex = _deck._cards.Length;
+		int maxIndex = _deck.CardsLeft;
 		int randomIndex = new Random().Next(0, maxIndex + 1);
-		Card randomCard = _deck._cards[randomIndex];
+		Card randomCard = _deck.Cards[randomIndex];
 		_deck.RemoveFromDeck(randomCard);
 		return randomCard;
 	}
-	public Card[] TakeCards(int number)
+	public Card[] TakeNumberOfCards(int number)
 	{
 		Card[] takenCards = new Card[number];
 		for (int i = 0; i < number; i++)

@@ -11,11 +11,11 @@ Card card2 = player1.TakeRandomCard();
 player1.AddCardsToHand(card2);
 card2.PrintCard();
 
-
-Card[] cards = player1.TakeCards(5);
+Card[] cards = player1.TakeNumberOfCards(5);
 player1.AddCardsToHand(cards);
 
 Console.WriteLine("---");
 player1.ShowCardsInHand();
 Console.WriteLine("---");
+Console.WriteLine(Deck1.CardsLeft);
 Deck1.PrintDeck();
