@@ -5,18 +5,18 @@
 */
 
 int number = ReadNumber("Enter number");
+System.Console.WriteLine(Sum(number));
 
 int Sum(int num)
 {
-	if (num == 0)
+	if (num > 0)
 	{
-		return 0;
+		return num % 10 + Sum(num / 10);
 	}
 	else
 	{
-		num = Sum(num % 10);
+		return 0;
 	}
-	return sum;
 
 }
 
